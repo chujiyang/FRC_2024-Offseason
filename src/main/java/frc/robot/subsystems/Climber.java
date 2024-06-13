@@ -7,7 +7,8 @@ import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
     
-    private final CANSparkMax climber;
+    private final CANSparkMax leftMotor;
+    private final CANSparkMax rightMotor;
 
     private static Climber instance;
 
@@ -18,28 +19,29 @@ public class Climber extends SubsystemBase {
         return instance;
     }
 
-    public Climber() {
-        climber = Constants.Climber.CLIMBER.createSparkMax();
+    private Climber() {
+        leftMotor = Constants.Climber.CLIMBER.createSparkMax();
+        rightMotor = Constants.Climber.CLIMBER.createSparkMax();
     }
-
-    @Override
-    public void periodic() {}
 
     public Command moveClimber() {
         return runOnce(() -> {
-            climber.set(0.2);
+            leftMotor.set(Constants.Climber.DEFAULT_SPEED);
+            rightMotor.set(Constants.Climber.DEFAULT_SPEED);
         });
     }
     
     public Command reverseClimber() {
         return runOnce(() -> {
-            climber.set(-0.2);
+            leftMotor.set(Constants.Climber.DEFAULT_SPEED * (-1));
+            rightMotor.set(Constants.Climber.DEFAULT_SPEED * (-1));
         });
     }
 
     public Command stopClimber() {
         return runOnce(() -> {
-            climber.set(0);
+            leftMotor.set(0);
+            leftMotor.set(0);
         });
     }
 }

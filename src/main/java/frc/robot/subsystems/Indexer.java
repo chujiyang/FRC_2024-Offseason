@@ -21,19 +21,16 @@ public class Indexer extends SubsystemBase{
     private Indexer() {
         indexer = Constants.Indexer.INDEXER.createSparkMax();
     }
-
-    @Override
-    public void periodic() {}
     
     public Command moveIndexer() {
         return runOnce(() -> {
-            indexer.set(0.8);
+            indexer.set(Constants.Indexer.DEFAULT_SPEED);
         });
     }
 
     public Command reverseIndexer() {
         return runOnce(() -> {
-            indexer.set(-0.8);
+            indexer.set(Constants.Indexer.DEFAULT_SPEED * (-1));
         });
     }
 

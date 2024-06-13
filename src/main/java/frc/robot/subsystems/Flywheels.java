@@ -1,11 +1,8 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.configs.Slot0Configs;
 import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.controls.VelocityDutyCycle;
 import com.ctre.phoenix6.hardware.TalonFX;
-import com.playingwithfusion.CANVenom.ControlMode;
-import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,14 +16,13 @@ public class Flywheels extends SubsystemBase {
     private final TalonFX topFlywheel;
     private final TalonFX bottomFlywheel;
 
-    private static Flywheels instance;
-
     private static PIDTuning pid;
-    private static ArmFeedforward ff;
 
     private static TunableNumber setpoint;
 
     private VelocityDutyCycle velocityPid;
+
+    private static Flywheels instance;
 
     public static Flywheels getInstance() {
         if (instance == null) {
@@ -45,12 +41,6 @@ public class Flywheels extends SubsystemBase {
         topFlywheel.setControl(new Follower(bottomFlywheel.getDeviceID(), false));
         
         pid = Constants.Flywheels.TOP_FLYWHEEL.genPIDTuning("top flywheel", Constants.TUNING_MODE);
-
-        ff = new ArmFeedforward(
-            Constants.Flywheels.S, 
-            Constants.Flywheels.G, 
-            Constants.Flywheels.V
-        );
 
         setpoint = new TunableNumber("flywheel setpoint", 0, Constants.TUNING_MODE);
 
@@ -78,7 +68,6 @@ public class Flywheels extends SubsystemBase {
         
         pid.updatePID(topFlywheel);
 
-        double velocity = setpoint.get();
-        topFlywheel.setControl(velocityPid.withVelocity(velocity));
+        topFlywheel.setControl(velocityPid.withVelocity(setpoint.get()));
     }
 }
