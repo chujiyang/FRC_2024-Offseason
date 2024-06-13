@@ -4,16 +4,99 @@
 
 package frc.robot;
 
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
- *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
+import frc.robot.SushiLib.Control.PIDConfig;
+import frc.robot.SushiLib.Motor.MotorConfig;
+import frc.robot.SushiLib.Motor.MotorConfig.Mode;
+import frc.robot.SushiLib.Sensors.BeamBreak.BeamBreakConfig;
+
 public final class Constants {
-  public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
-  }
+    public static final boolean TUNING_MODE = false;
+
+    public static class Ports {
+        public static final String CANIVORE_NAME = ""; // TODO: Set later
+    }
+
+    public static class Intake {
+        public static MotorConfig OUTER_MOTOR = new MotorConfig(
+            -1,
+            20,
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.BRAKE
+        );
+        public static MotorConfig INNER_MOTOR = new MotorConfig(
+            -1,
+            20,
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.BRAKE
+        );
+        public static BeamBreakConfig BEAM_BREAK = new BeamBreakConfig(-1); // TODO: set later
+        public final static double DEFAULT_SPEED = 0.8;
+    }
+
+    public static class Wrist {
+        public final static MotorConfig LEFT_MOTOR = new MotorConfig(
+            -1,
+            20,
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.BRAKE
+        );
+
+        public final static MotorConfig RIGHT_MOTOR = new MotorConfig(
+            -1,
+            20,
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.BRAKE
+        );
+
+        public static final double G = 0.0;
+        public static final double S = 0.0;
+        public static final double V = 0.0;
+
+        public static final double GEAR_RATIO = 1.0;
+    }
+
+    public static class Flywheels {
+        public final static MotorConfig TOP_FLYWHEEL = new MotorConfig(
+            -1,
+            20, //?
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.COAST
+        );
+        public final static MotorConfig BOTTOM_FLYWHEEL = new MotorConfig(
+            -1,
+            20, //?
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.COAST
+        );
+
+        public static final double GEAR_RATIO = 1.0;
+    }
+
+    public static class Indexer {
+        public final static MotorConfig INDEXER = new MotorConfig(
+            -1,
+            20,
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.BRAKE
+        );
+        public final static double DEFAULT_SPEED = 0.8;
+    }
+
+    public static class Climber {
+        public final static MotorConfig CLIMBER = new MotorConfig(
+            -1,
+            20,
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.BRAKE
+        );
+        public final static double DEFAULT_SPEED = 0.2;
+    }
 }
