@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Indexer extends SubsystemBase{
+public class Indexer extends SubsystemBase{ 
 
     private final CANSparkMax indexer;
 
     private static Indexer instance;
-
+w
     public static Indexer getInstance() {
         if (instance == null) {
             instance = new Indexer();
