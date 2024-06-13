@@ -1,7 +1,9 @@
 package frc.robot.SushiLib.Motor;
 
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -22,6 +24,12 @@ public class MotorHelper {
     public static TalonFXConfiguration setConversionFactor(TalonFXConfiguration config, double factor) {
         config.Feedback.SensorToMechanismRatio = 1.0 / factor;
         return config;
+    }
+
+    public static void setConversionFactor(TalonFX motor, double factor) {
+        FeedbackConfigs feedback = new FeedbackConfigs();
+        feedback.SensorToMechanismRatio = 1.0 / factor;
+        motor.getConfigurator().apply(feedback);
     }
 
     public static TalonFXConfiguration setDegreeConversionFactor(TalonFXConfiguration config, double gearing) {

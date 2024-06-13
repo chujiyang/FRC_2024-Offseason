@@ -45,4 +45,37 @@ public final class Constants {
 
         public static final double GEAR_RATIO = 1.0;
     }
+
+    public static class Flywheels {
+        public final static MotorConfig TOP_FLYWHEEL = new MotorConfig(
+            -1,
+            20, //?
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.COAST
+        );
+        public final static MotorConfig BOTTOM_FLYWHEEL = new MotorConfig(
+            -1,
+            20, //?
+            false,
+            new PIDConfig(0.0, 0.0, 0.0, 0.0),
+            Mode.COAST
+        );
+
+        public static final double G = 0.0;
+        public static final double S = 0.0;
+        public static final double V = 0.0;
+
+        public static final double GEAR_RATIO = 1.0;
+    }
+
+    public static class Indexer {
+        public final static MotorConfig INDEXER = new MotorConfig(-1);
+
+        public static final double GEAR_RATIO = 1.0;
+    }
+
+    public static class Climber {
+        public final static MotorConfig CLIMBER = new MotorConfig(-1);
+    }
 }
